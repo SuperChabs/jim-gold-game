@@ -42,7 +42,7 @@ bool Game::Init() {
     player = std::make_shared<Player>(0, 0, PLAYER_WIDHT, PLAYER_HEIGHT, Vector2{32, 32}, "assets/textures/jim_t.png");
 
     auto houseScene = std::make_unique<HouseScene>();
-    auto scene2 = std::make_unique<Scene2>(player);
+    auto scene2 = std::make_unique<Scene2>(player, camera);
 
     sceneManager->AddScene("HouseScene", std::move(houseScene));
     sceneManager->AddScene("Scene2", std::move(scene2));

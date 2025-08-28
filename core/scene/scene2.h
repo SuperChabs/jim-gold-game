@@ -10,7 +10,7 @@
 
 class Scene2 : public Scene {
 public:
-    Scene2(std::shared_ptr<Player> playerPtr);
+    Scene2(std::shared_ptr<Player> playerPtr, std::shared_ptr<Camera2D> cameraPtr);
     ~Scene2() override;
     
     void Update(float deltaTime) override;
@@ -24,9 +24,11 @@ private:
 
     std::vector<std::shared_ptr<NPC>> npcs;
 
-    std::unique_ptr<DialogueWindow> npc1;
+    std::unique_ptr<DialogueWindow> npcDialogueWindows1;
 
     std::vector<std::string> npcReplics;
 
     std::shared_ptr<Player> player;
+
+    std::shared_ptr<Camera2D> camera;
 };

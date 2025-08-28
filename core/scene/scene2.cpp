@@ -9,7 +9,7 @@
 #include <memory>
 #include <iostream>
 
-Scene2::Scene2(std::shared_ptr<Player> playerPtr) : Scene("Scene2"), player(playerPtr) 
+Scene2::Scene2(std::shared_ptr<Player> playerPtr, std::shared_ptr<Camera2D> cameraPtr) : Scene("Scene2"), player(playerPtr), camera(std::move(cameraPtr)) 
 {
     rocks.push_back(std::make_unique<GameObject>(200, 200, 150, 150, 17, 17, "assets/textures/rock1.png"));
     rocks.push_back(std::make_unique<GameObject>(0, 200, 150, 150, 17, 17, "assets/textures/rock1.png"));
@@ -28,7 +28,7 @@ Scene2::Scene2(std::shared_ptr<Player> playerPtr) : Scene("Scene2"), player(play
         rocks[i]->SetHitboxSize(100, 50);
     }
 
-    npc1 = std::make_unique<DialogueWindow>(npcReplics);
+    npcDialogueWindows1 = std::make_unique<DialogueWindow>(npcReplics);
 };
 
 Scene2::~Scene2() 
@@ -44,22 +44,6 @@ void Scene2::Update(float deltaTime)
     objectMatrix.push_back(rockPtrs);
 
     player->Update({0, 0}, objectMatrix);
-    
-    for (auto& npc : npcs)
-    {
-        if (CheckCollisionRecs(player->GetHitbox(), npc->GetHitbox())) 
-        {
-            //DrawText("Press E", 0, 0, 20, GREEN);
-            std::cout << "Collision between player and npc\n";
-        }
-
-        else if (IsKeyPressed(KEY_E) && CheckCollisionRecs(player->GetHitbox(), npc->GetHitbox())) 
-        {
-            npc1->Draw();
-            std::cout << "Dialogue box has been drawen\n";
-        }
-
-    }
 }
 
 void Scene2::Draw()
@@ -86,5 +70,21 @@ void Scene2::Draw()
     for (auto& npc : npcs) 
     {
         npc->Draw();
+    }
+
+        for (auto& npc : npcs)
+    {
+        if (CheckCollisionRecs(player->GetHitbox(), npc->GetHitbox())) 
+        {
+            DrawText("Press E", 0, 0, 20, GREEN);
+            std::cout << "Collision between player and npc\n";
+        }
+
+        if (IsKeyPressed(KEY_E) && CheckCollisionRecs(player->GetHitbox(), npc->GetHitbox())) 
+        {
+            npcDialogueWindows1->Draw(*camera);
+            std::cout << "Dialogue box has been drawen\n";
+        }
+
     }
 }
