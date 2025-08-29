@@ -31,11 +31,12 @@ bool Game::Init() {
     SetTargetFPS(60);
 
     //InitAudioDevice();
+    camera = std::make_shared<Camera2D>();
 
-    camera.target = {0, 0};
-    camera.offset = {screenWidth / 2.0f, screenHeight / 2.0f};
-    camera.rotation = 0.0f;
-    camera.zoom = 1.0f;
+    camera->target = {0, 0};
+    camera->offset = {screenWidth / 2.0f, screenHeight / 2.0f};
+    camera->rotation = 0.0f;
+    camera->zoom = 1.0f;
 
     isRunning = true;
 
@@ -67,11 +68,11 @@ void Game::Run() {
         if(sceneManager)
             sceneManager->Update(GetFPS());
 
-        camera.target = player->GetPosition();
+        camera->target = player->GetPosition();
 
         BeginDrawing();
 
-        BeginMode2D(camera);
+        BeginMode2D(*camera);
 
         if (IsKeyPressed(KEY_G)) 
             sceneManager->SwitchScene("Scene2");
@@ -88,7 +89,7 @@ void Game::Run() {
 
         DrawText(TextFormat("Player: %.1f, %.1f", player->GetX(), player->GetY()), 10, 30, 10, BLACK);
         
-        escapeText.Draw(camera);
+        escapeText.Draw(*camera);
 
         EndDrawing();
     }

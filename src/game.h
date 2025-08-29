@@ -25,7 +25,7 @@ private:
     std::unique_ptr<AudioManager> audioManager;
 
     // Камера
-    Camera2D camera;
+    std::shared_ptr<Camera2D> camera;
 
     // Час
     float deltaTime;
@@ -48,7 +48,7 @@ public:
     int GetScreenWidth() const { return screenWidth; }
     int GetScreenHeight() const { return screenHeight; }
     float GetDeltaTime() const { return deltaTime; }
-    Camera2D& GetCamera() { return camera; }
+    Camera2D& GetCamera() { return *camera; }
     SceneManager* GetSceneManager() const { return sceneManager.get(); }
     AudioManager* GetAudioManager() const { return audioManager.get(); }
 
