@@ -4,7 +4,8 @@
 DialogueWindow::DialogueWindow(std::vector<std::string>& replics)
 {
     npcReplics = replics;
-    dialogueBoxUI = std::make_unique<UI>("", 100, 600, 1040, 200, BLACK, WHITE); // screen space
+    dialogueBoxUI = std::make_unique<UI>("", static_cast<float>(dialogueBoxX), static_cast<float>(dialogueBoxY),
+    1040.f, 200.f, BLACK, WHITE);
     pressEText = std::make_unique<UI>("Press E", 20, 20, 20, GREEN, true); // screen space
 }
 void DialogueWindow::Update()

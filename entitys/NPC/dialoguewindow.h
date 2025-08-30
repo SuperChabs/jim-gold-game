@@ -26,7 +26,7 @@ private:
     const int dialogueBoxX = WINDOW_WIDHT - 20;
     const int dialogueBoxY = WINDOW_HEIGHT - 300;  
 
-    std::unique_ptr<UI> dialogueBoxUI;
+    std::unique_ptr<UI> dialogueBoxUI; // = DialogueWindow(dialogueBoxX, dialogueBoxY, 1040, 200, BLACK, WHITE);
     std::unique_ptr<UI> pressEText;
 
     Camera2D camera1;
