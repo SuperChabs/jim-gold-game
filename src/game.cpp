@@ -83,6 +83,8 @@ void Game::Run() {
 
         Draw();
 
+        
+
         EndMode2D();
 
         DrawFPS(10, 10);

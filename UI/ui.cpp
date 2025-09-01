@@ -1,4 +1,5 @@
 #include "ui.h"
+#include <iostream>
 
 UI::UI(const std::string& text, float x, float y, int fontSize, Color color, bool isScreenSpace)
     : position{x, y}
@@ -39,6 +40,7 @@ void UI::Draw(const Camera2D& camera) {
     } else if (type == UIType::DIALOGUE_BOX) {
         DrawRectangle(drawPos.x, drawPos.y, size.x, size.y, backgroundColor);
         DrawText(text.c_str(), drawPos.x + 10, drawPos.y + 10, fontSize, textColor);
+        std::cout << "This UI shit was been drawen\n";
     }
 }
 

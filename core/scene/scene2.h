@@ -16,6 +16,8 @@ public:
     void Update(float deltaTime) override;
     void Draw() override;
 
+    void GetDialogueWindowVector(int npcsDialogueBoxUiNummber);
+
 private:
     std::vector<std::vector<std::shared_ptr<GameObject>>> objectMatrix;
 

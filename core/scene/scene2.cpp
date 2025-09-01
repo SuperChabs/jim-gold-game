@@ -77,14 +77,22 @@ void Scene2::Draw()
         if (CheckCollisionRecs(player->GetHitbox(), npc->GetHitbox())) 
         {
             DrawText("Press E", 0, 0, 20, GREEN);
-            std::cout << "Collision between player and npc\n";
+            //std::cout << "Collision between player and npc\n";
         }
 
-        if (IsKeyPressed(KEY_E) && CheckCollisionRecs(player->GetHitbox(), npc->GetHitbox())) 
+        if (IsKeyDown(KEY_E) && CheckCollisionRecs(player->GetHitbox(), npc->GetHitbox())) 
         {
             npcDialogueWindows1->Draw(*camera);
             std::cout << "Dialogue box has been drawen\n";
         }
 
     }
+}
+
+void Scene2::GetDialogueWindowVector(int npcsDialogueBoxUiNummber)
+{
+    /*switch (npcsDialogueBoxUiNummber)
+        case = 1:
+            return
+    */ 
 }
